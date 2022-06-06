@@ -20,4 +20,5 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Chromatic
-        run: npx chromatic -t 54c231c7ac5b
+        run: CHROMATIC_INDEX_URL=https://www.staging-chromatic.com/graphql npx chromatic -t 54c231c7ac5b
+        
