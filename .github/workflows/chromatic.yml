@@ -1,0 +1,23 @@
+name: Chromatic
+
+on: push
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history so chromatic can compare to branches.
+
+      - name: dump env
+        run: printenv
+
+      - name: check github
+        run: echo ${{github.event.pull_request.draft}}
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Chromatic
+        run: npx chromatic -t 54c231c7ac5b
